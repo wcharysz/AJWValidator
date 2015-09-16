@@ -43,5 +43,9 @@ class ValidationRuleDateRangeTests: XCTestCase {
         
         let nilInput = Validator.validate(input: nil, rule: rule)
         XCTAssertFalse(nilInput.isValid)
+        
+        
+        let onSchedule = Validator.validate(input: today, rule: rule)
+        XCTAssertTrue(onSchedule.isValid)
     }
 }

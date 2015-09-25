@@ -43,7 +43,7 @@ internal struct AnyValidationRule<InputType>: ValidationRule {
     
     private let baseValidateInput: (InputType?) -> Bool
     
-    let failureError: ValidationErrorType
+    var failureError: ValidationErrorType
     
     init<R: ValidationRule where R.InputType == InputType>(base: R) {
         baseValidateInput = base.validateInput

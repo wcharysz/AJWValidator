@@ -31,14 +31,17 @@ import Foundation
 
 public protocol ValidationErrorType: ErrorType {
     var message: String { get }
+    var priority: Int { get set }
 }
 
 public struct ValidationError: ValidationErrorType {
     
     public let message: String
+    public var priority: Int
     
     public init(message m: String) {
         message = m
+        priority = 0
     }
     
 }

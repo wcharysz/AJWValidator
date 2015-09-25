@@ -66,4 +66,41 @@ class ValidatorTests: XCTestCase {
         
     }
     
+    func testThatItCanEvaluateMultipleRulesWithPriorities() {
+        
+        let err1 = ValidationError(message: "💣")
+        let err2 = ValidationError(message: "💣💣")
+        
+        var ruleSet = ValidationRuleSet<String>()
+        
+        let moreImportant = 2
+        let lessImportant = 1
+        ruleSet.addRule(ValidationRuleLength(min: 1, failureError: err1), priority: moreImportant)
+        ruleSet.addRule(ValidationRuleCondition<String>(failureError: err2) { $0 == "😀" }, priority: lessImportant)
+        
+        let definitelyInvalid = Validator.validate(input: "", rules: ruleSet)
+        XCTAssertEqual(definitelyInvalid, ValidationResult.Invalid([err1, err2]))
+
+        switch definitelyInvalid {
+        case.Invalid(let failures):
+            
+            XCTAssertTrue(failures.first?.priority > failures.last?.priority)
+            XCTAssertTrue(failures.first?.priority == moreImportant)
+            XCTAssertTrue(failures.last?.priority == lessImportant)
+             break
+        case.Valid:
+            
+            XCTAssertFalse(definitelyInvalid.isValid)
+             break
+        }
+        
+        let partiallyValid = "😁".validate(rules: ruleSet)
+        XCTAssertEqual(partiallyValid, ValidationResult.Invalid([err2]))
+        
+        let valid = "😀".validate(rules: ruleSet)
+        XCTAssertEqual(valid, ValidationResult.Valid)
+        
+
+    }
+    
 }

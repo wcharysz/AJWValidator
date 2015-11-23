@@ -36,10 +36,12 @@
 		9967E4001B7682C700ACAF54 /* ValidatableInterfaceElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967E3F41B7682C700ACAF54 /* ValidatableInterfaceElementTests.swift */; };
 		9967E4011B7682C700ACAF54 /* ValidatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967E3F61B7682C700ACAF54 /* ValidatableTests.swift */; };
 		9967E4021B7682C700ACAF54 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967E3F81B7682C700ACAF54 /* ValidatorTests.swift */; };
-		EC00D6291BA18045001E2511 /* ValidationRuleDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00D6281BA18045001E2511 /* ValidationRuleDateRange.swift */; settings = {ASSET_TAGS = (); }; };
-		EC00D62B1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00D62A1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift */; settings = {ASSET_TAGS = (); }; };
-		EC88D5CF1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88D5CE1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift */; settings = {ASSET_TAGS = (); }; };
-		EC88D5D11BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88D5D01BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift */; settings = {ASSET_TAGS = (); }; };
+		EC00D6291BA18045001E2511 /* ValidationRuleDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00D6281BA18045001E2511 /* ValidationRuleDateRange.swift */; };
+		EC00D62B1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00D62A1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift */; };
+		EC1E17D81C03158300118815 /* ValidationRuleCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E17D71C03158300118815 /* ValidationRuleCountry.swift */; };
+		EC1E17DA1C0323F800118815 /* ValidationRuleCountryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E17D91C0323F800118815 /* ValidationRuleCountryTest.swift */; };
+		EC88D5CF1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88D5CE1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift */; };
+		EC88D5D11BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88D5D01BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		9967E3F81B7682C700ACAF54 /* ValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
 		EC00D6281BA18045001E2511 /* ValidationRuleDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleDateRange.swift; sourceTree = "<group>"; };
 		EC00D62A1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleDateRangeTests.swift; sourceTree = "<group>"; };
+		EC1E17D71C03158300118815 /* ValidationRuleCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleCountry.swift; sourceTree = "<group>"; };
+		EC1E17D91C0323F800118815 /* ValidationRuleCountryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleCountryTest.swift; sourceTree = "<group>"; };
 		EC88D5CE1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleLuhnCheck.swift; sourceTree = "<group>"; };
 		EC88D5D01BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleLuhnCheckTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +181,7 @@
 				9967E3D41B76829D00ACAF54 /* ValidationRulePattern.swift */,
 				EC00D6281BA18045001E2511 /* ValidationRuleDateRange.swift */,
 				EC88D5CE1BA9B12F008E58AE /* ValidationRuleLuhnCheck.swift */,
+				EC1E17D71C03158300118815 /* ValidationRuleCountry.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				9967E3F01B7682C700ACAF54 /* ValidationRulePatternTests.swift */,
 				EC00D62A1BA18A71001E2511 /* ValidationRuleDateRangeTests.swift */,
 				EC88D5D01BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift */,
+				EC1E17D91C0323F800118815 /* ValidationRuleCountryTest.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				9967E3E61B76829D00ACAF54 /* Validatable.swift in Sources */,
 				9967E3E41B76829D00ACAF54 /* UITextField+Validator.swift in Sources */,
 				9967E3E71B76829D00ACAF54 /* ValidationResult.swift in Sources */,
+				EC1E17D81C03158300118815 /* ValidationRuleCountry.swift in Sources */,
 				9967E3EA1B76829D00ACAF54 /* Validator.swift in Sources */,
 				9967E3E21B76829D00ACAF54 /* ValidationRulePattern.swift in Sources */,
 				995B7A161B7BF96E00FB2AB7 /* ValidationRuleRequired.swift in Sources */,
@@ -372,6 +379,7 @@
 				9967E4011B7682C700ACAF54 /* ValidatableTests.swift in Sources */,
 				EC88D5D11BA9BE83008E58AE /* ValidationRuleLuhnCheckTests.swift in Sources */,
 				9967E3FA1B7682C700ACAF54 /* ValidationRuleConditionTests.swift in Sources */,
+				EC1E17DA1C0323F800118815 /* ValidationRuleCountryTest.swift in Sources */,
 				9967E3FB1B7682C700ACAF54 /* ValidationRuleEqualityTests.swift in Sources */,
 				9967E4021B7682C700ACAF54 /* ValidatorTests.swift in Sources */,
 				9967E3FC1B7682C700ACAF54 /* ValidationRuleLengthTests.swift in Sources */,

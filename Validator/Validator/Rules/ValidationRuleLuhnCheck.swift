@@ -20,7 +20,7 @@ public struct ValidationRuleLuhnCheck: ValidationRule {
     
     public func validateInput(input: String?) -> Bool {
         
-        if (input != nil) {
+        if let inputNumbers = input {
             
             var sum = 0
             var even = 0
@@ -30,9 +30,13 @@ public struct ValidationRuleLuhnCheck: ValidationRule {
             
             var digitArray:[Int] = []
             
-            for i in (input?.characters)! {
+            for i in inputNumbers.characters {
                 let stringNumber = String(i)
-                digitArray.append(Int(stringNumber)!)
+                guard let intNumber = Int(stringNumber) else {
+                    return false
+                }
+                
+                digitArray.append(intNumber)
             }
             
             let numberLength = digitArray.count

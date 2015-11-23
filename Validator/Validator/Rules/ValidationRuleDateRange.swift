@@ -24,9 +24,9 @@ public struct ValidationRuleDateRange: ValidationRule {
     
     public func validateInput(input: NSDate?) -> Bool {
 
-        if (input !== nil) {
+        if let inputDate = input {
             
-            return input!.laterDate(self.min).isEqualToDate(input!) && input!.laterDate(self.max).isEqualToDate(self.max)
+            return inputDate.laterDate(self.min).isEqualToDate(inputDate) && inputDate.laterDate(self.max).isEqualToDate(self.max)
             
         } else {
             return false

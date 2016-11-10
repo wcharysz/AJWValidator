@@ -16,8 +16,8 @@ class ValidationRuleCountryTest: XCTestCase {
         
         let sampleName = "Germany"
         let wrongName = "Germania"
-        let localisedName = NSLocale.systemLocale().displayNameForKey(NSLocaleCountryCode, value: "DE")
-        
+        let localisedName = Locale.current.localizedString(forRegionCode: "DE")
+                    
         let rule = ValidationRuleCountry(failureError: ValidationError(message: "💣"))
         
         let correctCountry1 = Validator.validate(input: sampleName, rule: rule)

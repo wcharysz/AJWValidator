@@ -42,11 +42,11 @@ class ExamplesViewController: UITableViewController {
 
 extension ExamplesViewController {
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "String Examples"
         case 1: return "Numeric Examples"
@@ -54,7 +54,7 @@ extension ExamplesViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 8
         case 1: return 1
@@ -62,7 +62,7 @@ extension ExamplesViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell?
         
@@ -70,7 +70,7 @@ extension ExamplesViewController {
         
         case 0:
         
-            let stringCell = tableView.dequeueReusableCellWithIdentifier("StringExample", forIndexPath: indexPath) as! StringExampleTableViewCell
+            let stringCell = tableView.dequeueReusableCell(withIdentifier: "StringExample", for: indexPath) as! StringExampleTableViewCell
             stringCell.validationRuleSet = ValidationRuleSet<String>()
             cell = stringCell
             
@@ -134,7 +134,7 @@ extension ExamplesViewController {
             
         case 1:
             
-            let numericCell = tableView.dequeueReusableCellWithIdentifier("NumericExample", forIndexPath: indexPath) as! NumericExampleTableViewCell
+            let numericCell = tableView.dequeueReusableCell(withIdentifier: "NumericExample", for: indexPath) as! NumericExampleTableViewCell
             numericCell.validationRuleSet = ValidationRuleSet<Float>()
             cell = numericCell
             

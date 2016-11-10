@@ -41,13 +41,13 @@ class ExampleTableViewCell: UITableViewCell {
         stateLabel.text = "😐"
     }
         
-    func updateValidationState(result: ValidationResult) {
+    func updateValidationState(_ result: ValidationResult) {
         switch result {
-        case .Valid:
+        case .valid:
             stateLabel.text = "😀"
-        case .Invalid(let failures):
+        case .invalid(let failures):
             let messages = failures.map { $0.message }
-            stateLabel.text = "".join(messages)
+            stateLabel.text = messages.joined(separator: ". ")
         }
     }
     

@@ -36,12 +36,12 @@ public struct ValidationRuleSet<InputType> {
     
     internal var rules = [(rule: AnyValidationRule<InputType>, priority: Int)]()
     
-    public mutating func addRule<R: ValidationRule where R.InputType == InputType>(rule: R) {
+    public mutating func addRule<R: ValidationRule>(_ rule: R) where R.InputType == InputType {
         let anyRule = AnyValidationRule(base: rule)
         rules.append((anyRule, 0))
     }
     
-    public mutating func addRule<R: ValidationRule where R.InputType == InputType>(rule: R, priority: Int) {
+    public mutating func addRule<R: ValidationRule>(_ rule: R, priority: Int) where R.InputType == InputType {
         var anyRule = AnyValidationRule(base: rule)
         anyRule.failureError.priority = priority
         rules.append((anyRule, priority))

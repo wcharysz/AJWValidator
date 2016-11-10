@@ -18,40 +18,31 @@ public struct ValidationRuleLuhnCheck: ValidationRule {
         self.failureError = failureError
     }
     
-    public func validateInput(input: String?) -> Bool {
+    public func validateInput(_ input: String?) -> Bool {
         
-        if let inputNumbers = input {
+        guard let inputNumbers = input else {
+            return false
+        }
+        
+        var sum = 0
+        var even = 0
             
-            var sum = 0
-            var even = 0
-            
-            //Checks if the card consists only zeros
-            var controlSum = 0
-            
-            var digitArray:[Int] = []
-            
-            for i in inputNumbers.characters {
-                let stringNumber = String(i)
-                guard let intNumber = Int(stringNumber) else {
-                    return false
-                }
-                
-                digitArray.append(intNumber)
-            }
-            
-            let numberLength = digitArray.count
-            
-            for var i = numberLength - 1; i >= 0; i-- {
-                let number = digitArray[i]
-                let addend = number * (1 << (even++ & 1))
+        //Checks if the card consists only zeros
+        var controlSum = 0
+        
+        let digitArray = inputNumbers.characters.map { (character) -> Int? in
+            return Int(String(character))
+        }
+        
+        for number in digitArray.reversed() {
+            if let number = number {
+                let addend = number * (1 << (even & 1))
+                even += 1
                 sum += addend % 10 + addend / 10
                 controlSum += number
             }
-            
-            return (sum % 10 == 0 ) && (controlSum > 0)
-            
-        } else {
-            return false
         }
+
+        return (sum % 10 == 0 ) && (controlSum > 0)
     }
 }

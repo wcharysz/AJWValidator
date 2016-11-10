@@ -30,21 +30,21 @@
 import Foundation
 import ObjectiveC
 
-public typealias ValidationHandler = ValidationResult -> ()
+public typealias ValidationHandler = (ValidationResult) -> ()
 
 public protocol ValidatableInterfaceElement: AnyObject {
     
-    typealias InputType: Validatable
+    associatedtype InputType: Validatable
     
     var inputValue: InputType? { get }
     
-    func validate<R: ValidationRule where R.InputType == InputType>(rule r: R) -> ValidationResult
+    func validate<R: ValidationRule>(rule r: R) -> ValidationResult where R.InputType == InputType
     
     func validate(rules rs: ValidationRuleSet<InputType>) -> ValidationResult
 
     func validate() -> ValidationResult
     
-    func validateOnInputChange(validationEnabled: Bool)
+    func validateOnInputChange(_ validationEnabled: Bool)
     
 }
 
@@ -84,7 +84,7 @@ extension ValidatableInterfaceElement {
         }
     }
     
-    public func validate<R: ValidationRule where R.InputType == InputType>(rule r: R) -> ValidationResult {
+    public func validate<R: ValidationRule>(rule r: R) -> ValidationResult where R.InputType == InputType {
         let result = Validator.validate(input: inputValue, rule: r)
         if let h = validationHandler { h(result) }
         return result

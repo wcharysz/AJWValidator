@@ -36,13 +36,19 @@ class ValidatorTests: XCTestCase {
         
         let err = ValidationError(message: "💣")
         
-        let rule = ValidationRuleCondition<String>(failureError: err) { $0?.characters.count > 0 }
+        let rule = ValidationRuleCondition<String>(failureError: err) { string in
+            if let string = string, string.characters.count > 0 {
+                return true
+            }
+            
+            return false
+        }
         
         let invalid = Validator.validate(input: "", rule: rule)
-        XCTAssertEqual(invalid, ValidationResult.Invalid([err]))
+        XCTAssertEqual(invalid, ValidationResult.invalid([err]))
         
         let valid = Validator.validate(input: "😀", rule: rule)
-        XCTAssertEqual(valid, ValidationResult.Valid)
+        XCTAssertEqual(valid, ValidationResult.valid)
         
     }
     
@@ -56,13 +62,13 @@ class ValidatorTests: XCTestCase {
         ruleSet.addRule(ValidationRuleCondition<String>(failureError: err2) { $0 == "😀" })
         
         let definitelyInvalid = Validator.validate(input: "", rules: ruleSet)
-        XCTAssertEqual(definitelyInvalid, ValidationResult.Invalid([err1, err2]))
+        XCTAssertEqual(definitelyInvalid, ValidationResult.invalid([err1, err2]))
         
         let partiallyValid = "😁".validate(rules: ruleSet)
-        XCTAssertEqual(partiallyValid, ValidationResult.Invalid([err2]))
+        XCTAssertEqual(partiallyValid, ValidationResult.invalid([err2]))
 
         let valid = "😀".validate(rules: ruleSet)
-        XCTAssertEqual(valid, ValidationResult.Valid)
+        XCTAssertEqual(valid, ValidationResult.valid)
         
     }
     
@@ -79,26 +85,26 @@ class ValidatorTests: XCTestCase {
         ruleSet.addRule(ValidationRuleCondition<String>(failureError: err2) { $0 == "😀" }, priority: lessImportant)
         
         let definitelyInvalid = Validator.validate(input: "", rules: ruleSet)
-        XCTAssertEqual(definitelyInvalid, ValidationResult.Invalid([err1, err2]))
+        XCTAssertEqual(definitelyInvalid, ValidationResult.invalid([err1, err2]))
 
         switch definitelyInvalid {
-        case.Invalid(let failures):
+        case.invalid(let failures):
             
-            XCTAssertTrue(failures.first?.priority > failures.last?.priority)
+            XCTAssertTrue(failures.first?.priority ?? 0 > failures.last?.priority ?? 0)
             XCTAssertTrue(failures.first?.priority == moreImportant)
             XCTAssertTrue(failures.last?.priority == lessImportant)
              break
-        case.Valid:
+        case.valid:
             
             XCTAssertFalse(definitelyInvalid.isValid)
              break
         }
         
         let partiallyValid = "😁".validate(rules: ruleSet)
-        XCTAssertEqual(partiallyValid, ValidationResult.Invalid([err2]))
+        XCTAssertEqual(partiallyValid, ValidationResult.invalid([err2]))
         
         let valid = "😀".validate(rules: ruleSet)
-        XCTAssertEqual(valid, ValidationResult.Valid)
+        XCTAssertEqual(valid, ValidationResult.valid)
         
 
     }

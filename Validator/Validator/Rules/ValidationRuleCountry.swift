@@ -18,22 +18,18 @@ public struct ValidationRuleCountry: ValidationRule {
         self.failureError = failureError
     }
     
-    public func validateInput(input: InputType?) -> Bool {
+    public func validateInput(_ input: InputType?) -> Bool {
         
-        if let countryName = input {
-            
-            var countries = Array<String>()
-            
-            for code in  NSLocale.ISOCountryCodes() {
-                if let country = NSLocale.systemLocale().displayNameForKey(NSLocaleCountryCode, value: code) {
-                    countries.append(country)
-                }
-            }
-            
-            return countries.contains(countryName)
-            
-        } else {
+        guard let countryName = input else {
             return false
         }
+            
+        let countries = Locale.isoRegionCodes.map({ (code) -> String? in
+            return Locale.current.localizedString(forRegionCode: code)
+        })
+            
+        return countries.contains(where: { (country) -> Bool in
+            return country == countryName
+        })
     }
 }

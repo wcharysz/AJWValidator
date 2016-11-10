@@ -33,23 +33,23 @@ import XCTest
 class ValidationRuleConditionTests: XCTestCase {
     
     func testThatItCanValidateCustomConditions() {
-
-        let ruleA = ValidationRuleCondition<String>(failureError: ValidationError(message: "💣")) { $0?.rangeOfString("A") == nil }
+        let ruleA = ValidationRuleCondition<String>(failureError: ValidationError(message: "💣")) { string in
+            return string?.contains("A") ?? false
+        }
         
         let invalidA = Validator.validate(input: "invAlid", rule: ruleA)
-        XCTAssertFalse(invalidA.isValid)
+        XCTAssertTrue(invalidA.isValid)
         
         let validA = Validator.validate(input: "😀", rule: ruleA)
-        XCTAssertTrue(validA.isValid)
+        XCTAssertFalse(validA.isValid)
         
-        let ruleB = ValidationRuleCondition<[Int]>(failureError: ValidationError(message: "💣")) { $0?.reduce(0, combine: +) > 50 }
+        let ruleB = ValidationRuleCondition<[Int]>(failureError: ValidationError(message: "💣")) { ($0?.reduce(0, +))! > 50 }
         
         let invalidB = Validator.validate(input: [40, 1, 5], rule: ruleB)
         XCTAssertFalse(invalidB.isValid)
         
         let validB = Validator.validate(input: [45, 1, 5], rule: ruleB)
         XCTAssertTrue(validB.isValid)
-        
     }
     
 }
